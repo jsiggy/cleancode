@@ -11,6 +11,9 @@
     <properties>
         <junit-jupiter.version>5.10.1</junit-jupiter.version>
         <lombok.version>1.18.30</lombok.version>
+        <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <!--        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -28,9 +31,11 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
+                <version>3.12.1</version>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <groupId>org.apache.maven.plugins</groupId>
                 <configuration>
