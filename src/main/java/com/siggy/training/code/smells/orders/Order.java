@@ -1,16 +1,22 @@
 package com.siggy.training.code.smells.orders;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    static long lastOrderId = 0L;
+    private String id;
+    private List<Product> products = new ArrayList<>();
 
-    private final List<Product> products;
-    private final long id;
+    public Order(String orderId) {
+        id = orderId;
+    }
 
-    public Order(List<Product> products) {
-        this.products = products;
-        this.id = ++lastOrderId;
+    public void addProduct(Product productToAdd) {
+        products.add(productToAdd);
+    }
+
+    public Object getOrderId() {
+        return id;
     }
 
     public int getProductCount() {
@@ -21,7 +27,7 @@ public class Order {
         return products.get(index);
     }
 
-    public long getOrderId() {
-        return id;
+    public List<Product> getProducts() {
+        return products;
     }
 }

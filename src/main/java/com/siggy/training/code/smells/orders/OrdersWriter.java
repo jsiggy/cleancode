@@ -1,12 +1,7 @@
 package com.siggy.training.code.smells.orders;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.Currency;
-import java.util.List;
-
 public class OrdersWriter {
-    private final Orders orders;
+    private Orders orders;
 
     public OrdersWriter(Orders orders) {
         this.orders = orders;
@@ -17,15 +12,15 @@ public class OrdersWriter {
         contents.append("<orders>");
         for (int i = 0; i < orders.getOrderCount(); i++) {
             Order order = orders.getOrder(i);
-            contents.append("\n  <order>");
+            contents.append("<order");
             contents.append(" id='");
             contents.append(order.getOrderId());
             contents.append("'>");
             for (int j = 0; j < order.getProductCount(); j++) {
                 Product product = order.getProduct(j);
-                contents.append("\n    <product");
+                contents.append("<product");
                 contents.append(" id='");
-                contents.append(product.getId());
+                contents.append(product.getID());
                 contents.append("'");
                 contents.append(" color='");
                 contents.append(getColorFor(product));
@@ -45,31 +40,22 @@ public class OrdersWriter {
                 contents.append(product.getName());
                 contents.append("</product>");
             }
-            contents.append("\n  </order>");
+            contents.append("</order>");
         }
-        contents.append("\n</orders>");
+        contents.append("</orders>");
         return contents.toString();
     }
 
-    private Currency getCurrencyFor(Product product) {
-        return Currency.getInstance("USD");
+    private String getCurrencyFor(Product product) {
+        return "USD";
     }
 
-    private int getSizeFor(Product product) {
-        return product.getSize();
-    }
     private String getColorFor(Product product) {
-        return "BLUE";
+        return product.getColor().toString().toLowerCase();
     }
-    public static void main(String[] args) {
-        List<Product> products1 = Arrays.asList(
-                new Product(1005, new BigDecimal(10), "Blah 1", 3),
-                new Product(8934, new BigDecimal(5), "Blah 2"));
-        List<Product> products2 = Arrays.asList(
-                new Product(75, new BigDecimal(10), "My product 1", 3),
-                new Product(666, new BigDecimal(10), "My product 2"),
-                new Product(10231, new BigDecimal(200), "My product 3", 9));
-        Orders orders1 = new Orders(Arrays.asList(new Order(products1), new Order(products2)));
-        System.out.println(new OrdersWriter(orders1).getContents());
+
+    private String getSizeFor(Product product) {
+        var sizeString = product.getSize().toString().toLowerCase();
+        return product.getSize() == ProductSize.NOT_APPLICABLE ? "" : sizeString;
     }
 }

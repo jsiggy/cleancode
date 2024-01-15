@@ -1,24 +1,26 @@
 package com.siggy.training.code.smells.orders;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Orders {
-    private List<Order> orders = new ArrayList<>();
-
-    public Orders(List<Order> orders) {
-        this.orders = orders;
-    }
+public class Orders implements Iterable<Order> {
+    private final List<Order> lineItems = new ArrayList<>();
 
     public void addOrder(Order order) {
-        orders.add(order);
+        lineItems.add(order);
     }
 
     public int getOrderCount() {
-        return orders.size();
+        return lineItems.size();
     }
 
-    public Order getOrder(int i) {
-        return orders.get(i);
+    public Order getOrder(int index) {
+        return lineItems.get(index);
+    }
+
+    @Override
+    public Iterator<Order> iterator() {
+        return lineItems.iterator();
     }
 }

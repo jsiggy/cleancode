@@ -1,37 +1,42 @@
 package com.siggy.training.code.smells.orders;
 
-import java.math.BigDecimal;
-
 public class Product {
-    private final int id;
-    private final BigDecimal price;
+    private final String id;
     private final String name;
-    private final int size;
+    private final Color color;
+    private final float price;
+    private final ProductSize size;
 
-    public Product(int id, BigDecimal price, String name, int size) {
+    public Product(String id, String name, Color color, float price) {
+        this(id, name, color, price, ProductSize.NOT_APPLICABLE);
+    }
+
+    public Product(String id, String name, Color color, float price, ProductSize size) {
         this.id = id;
-        this.price = price;
         this.name = name;
+        this.color = color;
+        this.price = price;
         this.size = size;
     }
 
-    public Product(int id, BigDecimal price, String name) {
-        this(id, price, name, ProductSize.NOT_APPLICABLE);
-    }
-
-    public int getId() {
+    public String getID() {
         return id;
     }
 
-    public BigDecimal getPrice() {
+    public Color getColor() {
+        return color;
+    }
+
+    public float getPrice() {
         return price;
+    }
+
+    public ProductSize getSize() {
+        return size;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getSize() {
-        return size;
-    }
 }
