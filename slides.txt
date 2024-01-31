@@ -1,8 +1,0 @@
-# first file
-/absolute/path/intro.png
-
--- More slides
-slides/slides.{{next 2}}.png
-src/java/main/code.js
-src/more-code.js
-slides/slides.{{next 2}}.png
